@@ -17,11 +17,11 @@ int main() {
     float totalBill = 0.0;
     int choice, quantity;
 
-    printf("\n----------------------------------------");
-    printf("\n|    (resto name) Restaurant Menu      |");
-    printf("\n----------------------------------------");
+    printf("\n----------------------------------------\n");
+    printf("|Gonzales and Toreta's Restaurant Menu:|\n");
+    printf("----------------------------------------\n");
 
-    printf("\nAppetizers:\n");
+    printf("Appetizers:\n");
     printf("\t1. Sinigang na Soup:\t P%.2f\n", sinigangSoup);
     printf("\t2. Lumpia:\t\t P%.2f\n", lumpia);
     printf("\t3. Ceasar Salad:\t P%.2f\n", ceasarSalad);
@@ -35,11 +35,14 @@ int main() {
     printf("\t7. Halo-Halo:\t\t P%.2f\n", haloHalo);
     printf("\t8. Leche Flan:\t\t P%.2f\n", lecheFlan);
     printf("\t9. Ube Ice Cream:\t P%.2f\n", ubeIceCream);
-    printf("\n----------------------------------------\n");
 
-    printf("\nSelect items by entering their numbers:\n");
+    printf("\n----------------------------------------\n");
+    printf("|Select items by entering their numbers|\n");
+    printf("----------------------------------------\n");
 
     int itemCount = 0;
+
+    int QuantityList[9] = {0}; 
 
     while (1) {
         printf("\nEnter item number (0 to finish ordering / exit): ");
@@ -50,38 +53,7 @@ int main() {
         }
 
         if (choice >= 1 && choice <= 9) {
-            printf("\nYou selected: ");
-            switch (choice) {
-                case 1:
-                    printf("Sinigang na Soup\n");
-                    break;
-                case 2:
-                    printf("Lumpia\n");
-                    break;
-                case 3:
-                    printf("Ceasar Salad\n");
-                    break;
-                case 4:
-                    printf("Adobong Chicken\n");
-                    break;
-                case 5:
-                    printf("Beef Steak\n");
-                    break;
-                case 6:
-                    printf("Pancit\n");
-                    break;
-                case 7:
-                    printf("Halo-Halo\n");
-                    break;
-                case 8:
-                    printf("Leche Flan\n");
-                    break;
-                case 9:
-                    printf("Ube Ice Cream\n");
-                    break;
-            }
-            
-            printf("Enter quantity for the selected item: ");
+            printf("Enter quantity for item %d: ", choice);
             scanf("%d", &quantity);
 
             if (quantity <= 0) {
@@ -92,32 +64,42 @@ int main() {
             switch (choice) {
                 case 1:
                     totalBill += sinigangSoup * quantity;
+                    printf("Sinigang Soup (x%d): P%.2f\n", quantity, sinigangSoup * quantity);
                     break;
                 case 2:
                     totalBill += lumpia * quantity;
+                    printf("Lumpia (x%d): P%.2f\n", quantity, lumpia * quantity);
                     break;
                 case 3:
                     totalBill += ceasarSalad * quantity;
+                    printf("Ceasar Salad (x%d): P%.2f\n", quantity, ceasarSalad * quantity);
                     break;
                 case 4:
                     totalBill += adobongChicken * quantity;
+                    printf("Chicken Adobo (x%d): P%.2f\n", quantity, adobongChicken * quantity);
                     break;
                 case 5:
                     totalBill += beefSteak * quantity;
+                    printf("Beef Steak (x%d): P%.2f\n", quantity, beefSteak * quantity);
                     break;
                 case 6:
                     totalBill += pancit * quantity;
+                    printf("Pancit (x%d): P%.2f\n", quantity, pancit * quantity);
                     break;
                 case 7:
                     totalBill += haloHalo * quantity;
+                    printf("Halo-Halo (x%d): P%.2f\n", quantity, haloHalo * quantity);
                     break;
                 case 8:
                     totalBill += lecheFlan * quantity;
+                    printf("Leche Flan (x%d): P%.2f\n", quantity, lecheFlan * quantity);
                     break;
                 case 9:
                     totalBill += ubeIceCream * quantity;
+                    printf("Ube Ice Cream (x%d): P%.2f\n", quantity, ubeIceCream * quantity);
                     break;
             }
+            QuantityList[itemCount] = quantity;
             itemCount++;
         } else {
             printf("Invalid choice. Please select a valid item.\n");
@@ -125,48 +107,13 @@ int main() {
     }
 
     if (itemCount == 0) {
-        printf("\nThank you for considering our menu!\n");
+        printf("\nYou did not order anything. Thank you for considering our menu!\n");
         return 0;
     }
 
-    printf("----------------------------------------------------");
-    printf("\nReceipt:\n");
-    for (int i = 1; i <= itemCount; i++) {
-        printf("Item %d: ", i);
-        switch (i) {
-            case 1:
-                printf("Sinigang Soup (x%d):\t P%.2f\n", quantity, sinigangSoup);
-                break;
-            case 2:
-                printf("Lumpia (x%d):\t\t P%.2f\n", quantity, lumpia);
-                break;
-            case 3:
-                printf("Ceasar Salad (x%d):\t P%.2f\n", quantity, ceasarSalad);
-                break;
-            case 4:
-                printf("Chicken Adobo (x%d):\t P%.2f\n", quantity, adobongChicken);
-                break;
-            case 5:
-                printf("Beef Steak (x%d):\t P%.2f\n", quantity, beefSteak);
-                break;
-            case 6:
-                printf("Pancit (x%d):\t\t P%.2f\n", quantity, pancit);
-                break;
-            case 7:
-                printf("Halo-Halo (x%d):\t P%.2f\n", quantity, haloHalo);
-                break;
-            case 8:
-                printf("Leche Flan (x%d):\t P%.2f\n", quantity, lecheFlan);
-                break;
-            case 9:
-                printf("Ube Ice Cream (x%d):\t P%.2f\n", quantity, ubeIceCream);
-                break;
-        }
-    }
-
-    printf("----------------------------------------------------");
+    printf("-------------------------");
     printf("\nTotal Bill:\t P%.2f\n", totalBill);
-    printf("----------------------------------------------------");
+    printf("-------------------------\n");
 
     float payment;
 
@@ -178,11 +125,11 @@ int main() {
             printf("Payment is less than the total bill. Remaining balance: P%.2f\n", totalBill - payment);
         } else {
             float change = payment - totalBill;
-            printf("----------------------------------------------------\n");
-            printf("|Thank you for your payment. Your change is P%.2f  |\n", change);
-            printf("----------------------------------------------------\n");
+            printf("\n---------------------------------------------------");
+            printf("\nThank you for your payment. Your change is P%.2f", change);
             break;
         }
+
     } while (1);
 
     return 0;
