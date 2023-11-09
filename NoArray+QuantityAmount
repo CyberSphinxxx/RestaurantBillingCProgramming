@@ -1,0 +1,189 @@
+//no array + quantity amount
+
+#include <stdio.h>
+
+int main() {
+
+    float sinigangSoup = 30.0;
+    float lumpia = 15.0;
+    float ceasarSalad = 99.0;
+    float adobongChicken = 180.0;
+    float beefSteak = 130.0;
+    float pancit = 80.0;
+    float haloHalo = 80.0;
+    float lecheFlan = 60.0;
+    float ubeIceCream = 50.0;
+
+    float totalBill = 0.0;
+    int choice, quantity;
+
+    printf("\n----------------------------------------");
+    printf("\n|    (resto name) Restaurant Menu      |");
+    printf("\n----------------------------------------");
+
+    printf("\nAppetizers:\n");
+    printf("\t1. Sinigang na Soup:\t P%.2f\n", sinigangSoup);
+    printf("\t2. Lumpia:\t\t P%.2f\n", lumpia);
+    printf("\t3. Ceasar Salad:\t P%.2f\n", ceasarSalad);
+
+    printf("\nMain Courses:\n");
+    printf("\t4. Adobong Chicken:\t P%.2f\n", adobongChicken);
+    printf("\t5. Beef Steak:\t\t P%.2f\n", beefSteak);
+    printf("\t6. Pancit:\t\t P%.2f\n", pancit);
+
+    printf("\nDesserts:\n");
+    printf("\t7. Halo-Halo:\t\t P%.2f\n", haloHalo);
+    printf("\t8. Leche Flan:\t\t P%.2f\n", lecheFlan);
+    printf("\t9. Ube Ice Cream:\t P%.2f\n", ubeIceCream);
+    printf("\n----------------------------------------\n");
+
+    printf("\nSelect items by entering their numbers:\n");
+
+    int itemCount = 0;
+
+    while (1) {
+        printf("\nEnter item number (0 to finish ordering / exit): ");
+        scanf("%d", &choice);
+
+        if (choice == 0) {
+            break;
+        }
+
+        if (choice >= 1 && choice <= 9) {
+            printf("\nYou selected: ");
+            switch (choice) {
+                case 1:
+                    printf("Sinigang na Soup\n");
+                    break;
+                case 2:
+                    printf("Lumpia\n");
+                    break;
+                case 3:
+                    printf("Ceasar Salad\n");
+                    break;
+                case 4:
+                    printf("Adobong Chicken\n");
+                    break;
+                case 5:
+                    printf("Beef Steak\n");
+                    break;
+                case 6:
+                    printf("Pancit\n");
+                    break;
+                case 7:
+                    printf("Halo-Halo\n");
+                    break;
+                case 8:
+                    printf("Leche Flan\n");
+                    break;
+                case 9:
+                    printf("Ube Ice Cream\n");
+                    break;
+            }
+            
+            printf("Enter quantity for the selected item: ");
+            scanf("%d", &quantity);
+
+            if (quantity <= 0) {
+                printf("Invalid quantity. Please enter a positive quantity.\n");
+                continue;
+            }
+
+            switch (choice) {
+                case 1:
+                    totalBill += sinigangSoup * quantity;
+                    break;
+                case 2:
+                    totalBill += lumpia * quantity;
+                    break;
+                case 3:
+                    totalBill += ceasarSalad * quantity;
+                    break;
+                case 4:
+                    totalBill += adobongChicken * quantity;
+                    break;
+                case 5:
+                    totalBill += beefSteak * quantity;
+                    break;
+                case 6:
+                    totalBill += pancit * quantity;
+                    break;
+                case 7:
+                    totalBill += haloHalo * quantity;
+                    break;
+                case 8:
+                    totalBill += lecheFlan * quantity;
+                    break;
+                case 9:
+                    totalBill += ubeIceCream * quantity;
+                    break;
+            }
+            itemCount++;
+        } else {
+            printf("Invalid choice. Please select a valid item.\n");
+        }
+    }
+
+    if (itemCount == 0) {
+        printf("\nThank you for considering our menu!\n");
+        return 0;
+    }
+
+    printf("----------------------------------------------------");
+    printf("\nReceipt:\n");
+    for (int i = 1; i <= itemCount; i++) {
+        printf("Item %d: ", i);
+        switch (i) {
+            case 1:
+                printf("Sinigang Soup (x%d):\t P%.2f\n", quantity, sinigangSoup);
+                break;
+            case 2:
+                printf("Lumpia (x%d):\t\t P%.2f\n", quantity, lumpia);
+                break;
+            case 3:
+                printf("Ceasar Salad (x%d):\t P%.2f\n", quantity, ceasarSalad);
+                break;
+            case 4:
+                printf("Chicken Adobo (x%d):\t P%.2f\n", quantity, adobongChicken);
+                break;
+            case 5:
+                printf("Beef Steak (x%d):\t P%.2f\n", quantity, beefSteak);
+                break;
+            case 6:
+                printf("Pancit (x%d):\t\t P%.2f\n", quantity, pancit);
+                break;
+            case 7:
+                printf("Halo-Halo (x%d):\t P%.2f\n", quantity, haloHalo);
+                break;
+            case 8:
+                printf("Leche Flan (x%d):\t P%.2f\n", quantity, lecheFlan);
+                break;
+            case 9:
+                printf("Ube Ice Cream (x%d):\t P%.2f\n", quantity, ubeIceCream);
+                break;
+        }
+    }
+
+    printf("----------------------------------------------------");
+    printf("\nTotal Bill:\t P%.2f\n", totalBill);
+    printf("----------------------------------------------------");
+
+    float payment;
+
+    do {
+        printf("\nEnter the amount you are paying: P");
+        scanf("%f", &payment);
+
+        if (payment < totalBill) {
+            printf("Payment is less than the total bill. Remaining balance: P%.2f\n", totalBill - payment);
+        } else {
+            float change = payment - totalBill;
+            printf("----------------------------------------------------\n");
+            printf("|Thank you for your payment. Your change is P%.2f  |\n", change);
+            printf("----------------------------------------------------\n");
+            break;
+        }
+    } while (1);
+
+    return 0;
+}
